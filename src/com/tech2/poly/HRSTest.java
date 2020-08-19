@@ -10,6 +10,7 @@ abstract class Employee{
 	}
 
 	class Salesman extends Employee {
+		int annual_sales;
 		public void calcSalary() {
 			System.out.println("Salesman 급여 = 기본급 + 판매수당");
 		}
@@ -19,6 +20,7 @@ abstract class Employee{
 		}
 	}
 		class Consultant extends Employee{
+			int num_project;
 			public void calcSalary() {
 				System.out.println("Consultant 급여 = 기본급 + 컨설팅 특별수당");
 			}
@@ -29,12 +31,16 @@ abstract class Employee{
 		}
 		
 		abstract class Manager extends Employee{
+			
+			public int num_team;
+
 			public void calcSalary() {
 				System.out.println("Manager 급여 = 기본급 + 팀 성과수당");
 			}
 		}
 		
 		class Director extends Manager{
+			int num_team;
 			public void calcBonus() {
 				System.out.println("Director 보너스 = 기본급 * 12 * 6");
 			}
@@ -45,11 +51,19 @@ abstract class Employee{
 //				System.out.println("소득세를 계산합니다.");
 				System.out.println("Salesman 비교"+(e instanceof Salesman));
 				if (e instanceof Salesman) {
-					System.out.println("Salesman입니다");
-				}else if (e instanceof Director) {
-					System.out.println("Director입니다");
+					Salesman s=(Salesman)e;
+					s.annual_sales=6500000;
+					System.out.println("Salesman입니다."+s.annual_sales);
+					
+				}else if (e instanceof Manager) {
+					Manager m=(Manager)e;
+					m.num_team=5;
+					System.out.println("Manager입니다."+m.num_team);
+					
 				}else if (e instanceof Consultant) {
-					System.out.println("Consultant입니다");
+					Consultant c=(Consultant)e;
+					c.num_project=35;
+					System.out.println("Consultant입니다"+c.num_project);
 				}
 			}
 			public static void main(String[] args) {
